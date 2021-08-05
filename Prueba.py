@@ -13,7 +13,6 @@ def crearFactura():
     ventanacf.title("Crear Factura")
     ventanacf.configure(bg="#cdcdcb")
 
-
     global factura 
     global codigo 
     global detalle
@@ -145,6 +144,19 @@ ventana = Tk()
 ventana.geometry("450x300+100+100")
 ventana.title("Sistema de Factutación")
 
+menuP= Menu(ventana)
+ventana.config(menu=menuP)
+archivo = Menu(ventana)
+menuP.add_cascade(label="Archivo",menu=archivo)
+archivo.add_command(label="Crear Farctura")
+archivo.add_command(label="Buscar Facturas")
+archivo.add_command(label="Cierre Total")
+archivo.add_command(label="Salir",command=ventana.destroy)
+
+editar = Menu(ventana)
+menuP.add_cascade(label="Editar",menu=editar)
+editar.add_command(label="Agregar Productos")
+
 
 img = PhotoImage(file="imagen.gif")
 label = Label(ventana,image=img)
@@ -162,5 +174,4 @@ btnCrearFactura = Button(ventana,text="Crear Factura",command=crearFactura, font
 btnAgregar = Button(ventana,text="Agregar Producto", command=agregarFactura, font=("Agency FB",14), bg="#59DE8A",width=14).place(x=200,y=70)
 btnCalcular = Button(ventana,text="Buscar Factura",command=buscarFactura, font=("Agency FB",14), bg="#59DE8A",width=14).place(x=200,y=120)
 btnBuscar = Button(ventana,text="Cierre total",command=calcularTotalVentas, font=("Agency FB",14),bg="#59DE8A", width=14).place(x=200,y=170)
-btnBuscar = Button(ventana,text="Salir",command=ventana.quit, font=("Agency FB",14),bg="coral3",width=14).place(x=200,y=220)
-ventana.mainloop()
+ventana.mainloop() 
