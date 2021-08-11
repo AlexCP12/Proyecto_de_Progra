@@ -4,14 +4,14 @@ from tkinter import messagebox
 
 os.system("cls")
 
-def closeWindow():
-    Toplevel.destroy()
+def mensaje():
+    messagebox.showinfo("Su Factura se ha creado exitosamente")
 
 def crearFactura():
     ventanacf = Toplevel()
     ventanacf.geometry("450x400+100+100")
     ventanacf.title("Crear Factura")
-    ventanacf.configure(bg="#cdcdcb")
+    #ventanacf.configure(bg="#cdcdcb")
 
     global factura 
     global codigo 
@@ -19,20 +19,20 @@ def crearFactura():
     global precio
     global cantidad
 
-    lblNumFac = Label(ventanacf,text="Indique el número de factura:", font=("Agency FB", 14)).place(x=10,y=10)
-    txtNumFac = Entry(ventanacf,textvariable=factura,width=30).place(x=10,y=50)
+    lblNumFac = Label(ventanacf,text="Indique el número de factura:", font=("Agency FB", 16)).place(x=10,y=10)
+    txtNumFac = Entry(ventanacf,textvariable=factura,width=20).place(x=200,y=20)
  
-    lblCodPro = Label(ventanacf,text="Indique el código del producto:", font=("Agency FB", 14)).place(x=10,y=70)
-    txtCodPro = Entry(ventanacf,textvariable=codigo,width=30).place(x=10,y=100)
+    lblCodPro = Label(ventanacf,text="Indique el código del producto:", font=("Agency FB", 16)).place(x=10,y=70)
+    txtCodPro = Entry(ventanacf,textvariable=codigo,width=20).place(x=200,y=80)
 
-    lblDetalle = Label(ventanacf,text="Indique el detalle del producto: ", font=("Agency FB", 14)).place(x=10,y=120)
-    txtDetalle = Entry(ventanacf,textvariable=detalle,width=30).place(x=10,y=150)
+    lblDetalle = Label(ventanacf,text="Indique el detalle del producto: ", font=("Agency FB", 16)).place(x=10,y=120)
+    txtDetalle = Entry(ventanacf,textvariable=detalle,width=20).place(x=200,y=130)
 
-    lblPrecio = Label(ventanacf,text="Indique el precio unitario: ", font=("Agency FB", 14)).place(x=10,y=170)
-    txtPrecio = Entry(ventanacf,textvariable=precio,width=30).place(x=10,y=200)
+    lblPrecio = Label(ventanacf,text="Indique el precio unitario: ", font=("Agency FB", 16)).place(x=10,y=170)
+    txtPrecio = Entry(ventanacf,textvariable=precio,width=20).place(x=200,y=180)
 
-    lblCantidad = Label(ventanacf,text="Indique la cantidad de productos:", font=("Agency FB", 14)).place(x=10,y=220)
-    txtCantidad = Entry(ventanacf,textvariable=cantidad,width=30).place(x=10,y=250)
+    lblCantidad = Label(ventanacf,text="Indique la cantidad del producto:", font=("Agency FB", 14)).place(x=10,y=220)
+    txtCantidad = Entry(ventanacf,textvariable=cantidad,width=19).place(x=205,y=230)
     
     
     btnCFactura = Button(ventanacf,text="Crear Factura",command=CFactura, font=("Agency FB",14), width=15).place(x=20,y=280)
@@ -42,7 +42,7 @@ def crearFactura():
 def CFactura():
     global facturas
     global factura 
-    global codigo 
+    global codigo   
     global detalle
     global precio
     global cantidad
@@ -65,23 +65,23 @@ def agregarFactura():
     global precio
     global cantidad
 
-    lblNumFac = Label(ventanaAf,text="Indique el número de factura:", font=("Agency FB", 14)).place(x=10,y=10)
-    txtNumFac = Entry(ventanaAf,textvariable=factura,width=30).place(x=10,y=50)
+    lblNumFac = Label(ventanaAf,text="Indique el número de factura:", font=("Agency FB", 16)).place(x=10,y=10)
+    txtNumFac = Entry(ventanaAf,textvariable=factura,width=20).place(x=200,y=20)
 
-    lblCodPro = Label(ventanaAf,text="Indique el código del producto:", font=("Agency FB", 14)).place(x=10,y=70)
-    txtCodPro = Entry(ventanaAf,textvariable=codigo,width=30).place(x=10,y=100)
+    lblCodPro = Label(ventanaAf,text="Indique el código del producto:", font=("Agency FB", 16)).place(x=10,y=70)
+    txtCodPro = Entry(ventanaAf,textvariable=codigo,width=20).place(x=200,y=80)
 
-    lblDetalle = Label(ventanaAf,text="Indique el detalle del producto: ", font=("Agency FB", 14)).place(x=10,y=120)
-    txtDetalle = Entry(ventanaAf,textvariable=detalle,width=30).place(x=10,y=150)
+    lblDetalle = Label(ventanaAf,text="Indique el detalle del producto: ", font=("Agency FB", 16)).place(x=10,y=120)
+    txtDetalle = Entry(ventanaAf,textvariable=detalle,width=20).place(x=200,y=130)
 
-    lblPrecio = Label(ventanaAf,text="Indique el precio unitario: ", font=("Agency FB", 14)).place(x=10,y=170)
-    txtPrecio = Entry(ventanaAf,textvariable=precio,width=30).place(x=10,y=200)
+    lblPrecio = Label(ventanaAf,text="Indique el precio unitario: ", font=("Agency FB", 16)).place(x=10,y=170)
+    txtPrecio = Entry(ventanaAf,textvariable=precio,width=20).place(x=200,y=180)
 
     lblCantidad = Label(ventanaAf,text="Indique la cantidad de productos:", font=("Agency FB", 14)).place(x=10,y=220)
-    txtCantidad = Entry(ventanaAf,textvariable=cantidad,width=30).place(x=10,y=250)
+    txtCantidad = Entry(ventanaAf,textvariable=cantidad,width=20).place(x=210,y=230)
         
-    btnCFactura = Button(ventanaAf,text="Agregar Producto",command=agProducto, font=("Agency FB",14), width=15).place(x=20,y=280)
-    btnCFactura = Button(ventanaAf,text="Salir",command=ventanaAf.quit, font=("Agency FB",14), width=12).place(x=180,y=280)
+    btnCFactura = Button(ventanaAf,text="Agregar Producto",command=agProducto, font=("Agency FB",16), width=20).place(x=20,y=280)
+    btnCFactura = Button(ventanaAf,text="Salir",command=ventanaAf.quit, font=("Agency FB",16), width=12).place(x=180,y=280)
 
 def agProducto():
     global facturas
@@ -148,14 +148,14 @@ menuP= Menu(ventana)
 ventana.config(menu=menuP)
 archivo = Menu(ventana)
 menuP.add_cascade(label="Archivo",menu=archivo)
-archivo.add_command(label="Crear Farctura")
-archivo.add_command(label="Buscar Facturas")
-archivo.add_command(label="Cierre Total")
+archivo.add_command(label="Crear Farctura",command=crearFactura)
+archivo.add_command(label="Buscar Facturas",command=buscarFactura)
+archivo.add_command(label="Cierre Total",command=calcularTotalVentas)
 archivo.add_command(label="Salir",command=ventana.destroy)
 
 editar = Menu(ventana)
 menuP.add_cascade(label="Editar",menu=editar)
-editar.add_command(label="Agregar Productos")
+editar.add_command(label="Agregar Productos",command=agregarFactura)
 
 
 img = PhotoImage(file="imagen.gif")
@@ -170,8 +170,4 @@ codigo = IntVar()
 detalle= StringVar()
 precio = IntVar()
 cantidad= IntVar()
-btnCrearFactura = Button(ventana,text="Crear Factura",command=crearFactura, font=("Agency FB",14), bg="#59DE8A", width=14).place(x=200,y=20)
-btnAgregar = Button(ventana,text="Agregar Producto", command=agregarFactura, font=("Agency FB",14), bg="#59DE8A",width=14).place(x=200,y=70)
-btnCalcular = Button(ventana,text="Buscar Factura",command=buscarFactura, font=("Agency FB",14), bg="#59DE8A",width=14).place(x=200,y=120)
-btnBuscar = Button(ventana,text="Cierre total",command=calcularTotalVentas, font=("Agency FB",14),bg="#59DE8A", width=14).place(x=200,y=170)
 ventana.mainloop() 
