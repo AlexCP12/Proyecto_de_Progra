@@ -18,28 +18,26 @@ def crearFactura():
     global detalle
     global precio
     global cantidad
+    global listaP
 
-    lblNumFac = Label(ventanacf,text="Indique el número de factura:", font=("Agency FB", 16)).place(x=10,y=10)
-    txtNumFac = Entry(ventanacf,textvariable=factura,width=20).place(x=200,y=20)
- 
-    lblCodPro = Label(ventanacf,text="Indique el código del producto:", font=("Agency FB", 16)).place(x=10,y=70)
-    txtCodPro = Entry(ventanacf,textvariable=codigo,width=20).place(x=200,y=80)
+    lblNumFac = Label(ventanacf,text="Indique el número de factura:",   font=("Agency FB", 10)).place(x=10,y=10)
+    txtNumFac = Entry(ventanacf,textvariable=factura,width=20).place(x=10,y=30)
 
-    lblDetalle = Label(ventanacf,text="Indique el detalle del producto: ", font=("Agency FB", 16)).place(x=10,y=120)
-    txtDetalle = Entry(ventanacf,textvariable=detalle,width=20).place(x=200,y=130)
+    lblCantidad = Label(ventanacf,text="Indique la cantidad del producto:", font=("Agency FB", 10)).place(x=200,y=10)
+    txtCantidad = Entry(ventanacf,textvariable=cantidad,width=19).place(x=200,y=30)
+    btnCFactura = Button(ventanacf,text="Salir",command=ventanacf.destroy, font=("Agency FB",16), width=12).place(x=180,y=280)
+    listaP=Listbox(ventanacf, width= 20, height=5)
+    listaP.pack(pady=60)
+    for i in listaProductos:
+        listaP.insert(0,i)
 
-    lblPrecio = Label(ventanacf,text="Indique el precio unitario: ", font=("Agency FB", 16)).place(x=10,y=170)
-    txtPrecio = Entry(ventanacf,textvariable=precio,width=20).place(x=200,y=180)
-
-    lblCantidad = Label(ventanacf,text="Indique la cantidad del producto:", font=("Agency FB", 14)).place(x=10,y=220)
-    txtCantidad = Entry(ventanacf,textvariable=cantidad,width=19).place(x=205,y=230)
-    
-    
-    btnCFactura = Button(ventanacf,text="Crear Factura",command=CFactura, font=("Agency FB",14), width=15).place(x=20,y=280)
-    btnCFactura = Button(ventanacf,text="Salir",command=ventanacf.destroy, font=("Agency FB",14), width=12).place(x=180,y=280)
+    Button(ventanacf,text='Crear Factura', command=CFactura).pack()
+    show = Label(ventanacf)
+    show.pack()
 
 
 def CFactura():
+    global listaP
     global facturas
     global factura 
     global codigo   
@@ -47,7 +45,12 @@ def CFactura():
     global precio
     global cantidad
     global facturasl
-    facturasl = {codigo.get():[detalle.get(),precio.get(),cantidad.get()]}
+
+    i = listaP.get(ANCHOR)
+    codigo=listaProductos[i][0]  
+    detalle= i 
+    precio = listaProductos[i][1]
+    facturasl = {codigo:[detalle,precio,cantidad.get()]}
     facturas[factura.get()] = facturasl
     print(facturas)
     return facturas
@@ -64,24 +67,22 @@ def agregarFactura():
     global detalle
     global precio
     global cantidad
+    global listaP
 
-    lblNumFac = Label(ventanaAf,text="Indique el número de factura:", font=("Agency FB", 16)).place(x=10,y=10)
-    txtNumFac = Entry(ventanaAf,textvariable=factura,width=20).place(x=200,y=20)
+    lblNumFac = Label(ventanaAf,text="Indique el número de factura:", font=("Agency FB", 10)).place(x=10,y=10)
+    txtNumFac = Entry(ventanaAf,textvariable=factura,width=20).place(x=10,y=30)
 
-    lblCodPro = Label(ventanaAf,text="Indique el código del producto:", font=("Agency FB", 16)).place(x=10,y=70)
-    txtCodPro = Entry(ventanaAf,textvariable=codigo,width=20).place(x=200,y=80)
+    lblCantidad = Label(ventanaAf,text="Indique la cantidad del producto:", font=("Agency FB", 10)).place(x=200,y=10)
+    txtCantidad = Entry(ventanaAf,textvariable=cantidad,width=19).place(x=200,y=30)
 
-    lblDetalle = Label(ventanaAf,text="Indique el detalle del producto: ", font=("Agency FB", 16)).place(x=10,y=120)
-    txtDetalle = Entry(ventanaAf,textvariable=detalle,width=20).place(x=200,y=130)
+    listaP=Listbox(ventanaAf, width= 20, height=5)
+    listaP.pack(pady=60)
+    for i in listaProductos:
+        listaP.insert(0,i)
 
-    lblPrecio = Label(ventanaAf,text="Indique el precio unitario: ", font=("Agency FB", 16)).place(x=10,y=170)
-    txtPrecio = Entry(ventanaAf,textvariable=precio,width=20).place(x=200,y=180)
-
-    lblCantidad = Label(ventanaAf,text="Indique la cantidad de productos:", font=("Agency FB", 14)).place(x=10,y=220)
-    txtCantidad = Entry(ventanaAf,textvariable=cantidad,width=20).place(x=210,y=230)
         
     btnCFactura = Button(ventanaAf,text="Agregar Producto",command=agProducto, font=("Agency FB",16), width=20).place(x=20,y=280)
-    btnCFactura = Button(ventanaAf,text="Salir",command=ventanaAf.quit, font=("Agency FB",16), width=12).place(x=180,y=280)
+    btnCFactura = Button(ventanaAf,text="Salir",command=ventanaAf.destroy, font=("Agency FB",16), width=12).place(x=180,y=280)
 
 def agProducto():
     global facturas
@@ -91,7 +92,13 @@ def agProducto():
     global precio
     global cantidad
     global facturasl
-    facturasl = {codigo.get():[detalle.get(),precio.get(),cantidad.get()]}
+    global listaP
+
+    i = listaP.get(ANCHOR)
+    codigo=listaProductos[i][0]  
+    detalle= i 
+    precio = listaProductos[i][1]
+    facturasl = {codigo:[detalle,precio,cantidad.get()]}
     facturas[factura.get()].update(facturasl)
     print(facturas)       
     return facturas
@@ -136,9 +143,7 @@ def mensajeFac ():
         messagebox.showinfo(message= mensaje , title="Total")
     except:
         mensaje = "La factura no existe"
-        messagebox.showinfo(message= mensaje , title="Total")
-
-
+        messagebox.showinfo(message= mensaje , title="Total")  
 
 ventana = Tk()
 ventana.geometry("450x300+100+100")
@@ -157,17 +162,22 @@ editar = Menu(ventana)
 menuP.add_cascade(label="Editar",menu=editar)
 editar.add_command(label="Agregar Productos",command=agregarFactura)
 
-
-img = PhotoImage(file="imagen.gif")
+"""img = PhotoImage(file="imagen.gif")
 label = Label(ventana,image=img)
-label.place(x=0, y=0)
+label.place(x=0, y=0)"""
 
 
 facturas = {}
-listaProductos = {10:["Arroz",1200],15:["Frijoles",1000],30:["Papas tostadas",100],45:["Fideos", 800],300:["tortillas",750],201:["Carton de Huevos",1500],102:["Imperial",850],603:["Leche",900],507:["Pan",500],356:["Queso",1000],709:["Atun",1100],908:["Aceite",950],167:["Galletas",500]}
+listaProductos = {"Arroz":[10,1200],"Frijoles":[15,1000],"Papas tostadas":[30,100],"Fideos":[45, 800],"tortillas":[300,750],"Carton de Huevos":[201,1500],"Imperial":[102,850],"Leche":[603,900],"Pan":[507,500],"Queso":[356,1000],"Atun":[709,1100],"Aceite":[908,950],"Galletas":[167,500]}
 factura = IntVar()  
 codigo = IntVar()
 detalle= StringVar()
 precio = IntVar()
 cantidad= IntVar()
-ventana.mainloop() 
+listaP = Listbox
+
+ventana.mainloop()
+
+
+
+#{10:["Arroz",1200],15:["Frijoles",1000],30:["Papas tostadas",100],45:["Fideos", 800],300:["tortillas",750],201:["Carton de Huevos",1500],102:["Imperial",850],603:["Leche",900],507:["Pan",500],356:["Queso",1000],709:["Atun",1100],908:["Aceite",950],167:["Galletas",500]}
